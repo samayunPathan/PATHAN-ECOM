@@ -19,6 +19,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL='userprofile:myaccount'
+LOGOUT_REDIRECT_URL='core_app:font_page'
 
 # Application definition
 

@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.title
 
 class Product(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    user=models.ForeignKey(User,related_name='products',on_delete=models.CASCADE)
     category=models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     title=models.CharField(max_length=50)
     slug=models.SlugField(max_length=50)

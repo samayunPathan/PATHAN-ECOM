@@ -1,0 +1,22 @@
+{%extends 'core_app/base.html'%}
+{%block title%}Wellcome {%endblock%}
+
+
+{%block content%}
+<div class="flex flex-wrap">
+ {%for product in products%}
+ <div class="product w-1/3 p-2">
+    <div class="p-4  bg-gray-100">
+        <a href="{% url 'store:product_detail' product.slug%}">
+        <h2 class="text-xl">
+            {{product.title}}
+        </h2>
+        <p class="text-xs text-gray-600">BDT {{product.get_price}}</p>
+    </a>
+    </div>
+    
+ </div>
+ 
+ {%endfor%}
+</div>
+{%endblock%}

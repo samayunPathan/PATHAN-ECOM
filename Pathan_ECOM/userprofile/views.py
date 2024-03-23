@@ -16,16 +16,21 @@ from store.models import Product
 
 def verdor_detail(request,pk):
     user=User.objects.get(pk=pk)
+    products=user.products.filter(status=Product.ACTIVE)
 
     return render(request,'userprofile/vendor_detail.html',{
-        'user':user
+        'user':user,
+        'products':products,
     })
 @login_required
 def myaccount(request):
     return render(request,'userprofile/myaccount.html')
 @login_required
 def my_store(request):
-    return render(request,'userprofile/mystore.html')
+    products=request.user.products.exclude(status=Product.DELETED)
+    return render(request,'userprofile/mystore.html',{
+        'products':products
+    })
 
 @login_required
 def add_product(request):

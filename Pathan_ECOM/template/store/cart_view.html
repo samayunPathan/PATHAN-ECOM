@@ -3,6 +3,7 @@
 {%block content%}
 
 <h1 class="text-2xl mb-6">Cart</h1>
+{% if cart|length %}
 {% for item in cart %}
 <div class="px-2 py-2 bg-teal-100 mb-2 flex items-center">
     <div>
@@ -29,4 +30,7 @@
 {% endfor %}
 <strong> Total Cost :</strong> BDT {{cart.get_total_cost}} <br>
 <a href="{% url 'store:checkout' %}" class="mt-5 inline-block py-4 px-8 text-white bg-teal-700 hover:bg-teal-800 rounded-xl">Checkout</a>
+{% else %}
+<div class="py-6 px-8 bg-gray-200 ">You don't have any products in the Cart ! </div>
+{% endif %}
 {% endblock %}

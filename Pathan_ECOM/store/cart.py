@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from .models import Product
+from .models import Product,Order,OrderItem
 
 class Cart(object):
     def __init__(self, request):
@@ -47,9 +47,9 @@ class Cart(object):
             del self.cart[product_id]
             self.save()
     
-    # def clear(self):
-    #     del self.session[settings.CART_SESSION_ID]
-    #     self.session.modified = True
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.session.modified = True
     
     def get_total_cost(self):
         for p in self.cart.keys():

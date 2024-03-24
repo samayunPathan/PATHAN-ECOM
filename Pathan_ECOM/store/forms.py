@@ -1,6 +1,30 @@
 from django import forms
-from .models import Product
+from .models import Product,Order,OrderItem
 
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model=Order
+        fields=('first_name','last_name','email','address','zipcode','phone',)
+        widgets={
+            'first_name':forms.TextInput(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+            'last_name':forms.TextInput(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+            'email':forms.EmailInput(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+            'address':forms.Textarea(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+            'zipcode':forms.NumberInput(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+            'phone':forms.NumberInput(attrs={
+                'class':'w-full p-4 border border-gray-200'
+            }),
+        }
 
 class ProductForm(forms.ModelForm):
     

@@ -22,6 +22,8 @@ ALLOWED_HOSTS = []
 CART_SESSION_ID='cart'
 SESSION_COOKIE_AGE=86400
 
+LOGIN_URL='userprofile:login'
+
 LOGIN_REDIRECT_URL='userprofile:myaccount'
 LOGOUT_REDIRECT_URL='core_app:font_page'
 
@@ -125,7 +127,6 @@ STATICFILES_DIR=[STATIC_DIR,]
 MEDIA_ROOT=MEDIA_DIR
 MEDIA_URL='/media/'
 
-LOGIN_URL='/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

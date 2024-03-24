@@ -16,19 +16,23 @@
             <a href="/" class="text-2xl text-white">PATHAN ECOM</a>
         </div>
             <div class="search">
-              <form method="get" action="/search/">
-                <input type="search" name="query" placeholder="Search ...">
-                <button class="text-white">Search</button>
+              <form method="get" action="/search/" class="flex items-center space-x-3">
+                <input type="search" name="query" class="py-2 px-4 rounded-xl" placeholder="Search ...">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+                </button>
               </form>
             </div>
       
    
         
-        <div class="menu flex space-x-4">
+        <div class="menu flex space-x-4 items-center">
           {% menu %}
           {% if request.user.is_authenticated%}
-          <a href="{% url 'userprofile:myaccount'%}" class="text-white">My Account</a>
-          <a href="{%url 'userprofile:mystore'%}" class="text-white">My Store</a>
+          <a href="{% url 'userprofile:myaccount'%}" class="text-white py-2 px-2 bg-teal-700 rounded-xl hover:bg-teal-800">My Account</a>
+          <a href="{%url 'userprofile:mystore'%}" class="text-white py-2 px-2 bg-teal-700 rounded-xl hover:bg-teal-800">My Store</a>
           {% endif%}
         </div>
       </nav>

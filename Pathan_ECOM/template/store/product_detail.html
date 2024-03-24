@@ -15,5 +15,5 @@
 {% if product.description %}
 <p class="mt-4">{{product.description}}</p>
 {%endif%}
-
+<a href="{% url 'store:add_to_cart' product.id %}" class="inline-block py-4 px-8 bg-teal-500 text-white">Add to cart</a>
 {%endblock%}

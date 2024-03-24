@@ -51,7 +51,7 @@ def add_product(request):
 
     else:
         form=ProductForm
-    return render(request,'userprofile/addproduct.html',{
+    return render(request,'userprofile/product_form.html',{
         'title':'Add Product',
         'form':form
     })
@@ -69,7 +69,7 @@ def edit_product(request,pk):
  
     else:
         form=ProductForm(instance=product)
-    return render(request,'userprofile/addproduct.html',{
+    return render(request,'userprofile/product_form.html',{
         'title':'Edit Product',
         'product':product,
         'form':form

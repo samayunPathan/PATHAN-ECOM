@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),
     path("myaccount/", views.myaccount, name="myaccount"),
     path('mystore/',views.my_store,name='mystore'),
+    path('mystore-order-detail/<int:pk>/',views.my_store_order_detail,name='my_store_order_detail'),
     path('mystore/addproduct/',views.add_product,name='addproduct'),
     path('mystore/edit-product/<int:pk>/',views.edit_product,name='editproduct'),
     path('mystore/delete-product/<int:pk>/',views.delete_product,name='deleteproduct'),

@@ -6,18 +6,18 @@
 <h2 class="mb-3 text-xl">my product in this order </h2>
 <div class="flex flex-wrap mb-4">
     
-    <div class="w-1/4">
+    <div class="w-1/3">
         <strong>Title</strong>
     </div>
-    <div class="w-1/4">
+    <div class="w-1/3">
         <strong>Quantity</strong>
     </div>
-    <div class="w-1/4">
+    <div class="w-1/3">
         <strong>Price</strong>
     </div>
 </div>
 {% for item in order.items.all %}
-{% if item.product.user == request.user %}
+<!-- {% if item.product.user == request.user %} -->
 <div class="flex flex-wrap ">
     <div class="w-1/3">
         {{item.product.title}}

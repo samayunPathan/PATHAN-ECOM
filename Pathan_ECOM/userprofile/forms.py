@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 class UserCreationForm(UserCreationForm):
     email = EmailField(label=_("Email address"), required=True,
         help_text=_("Required."))
-    is_vendor = forms.BooleanField(label=_("Are you a vendor?"), required=True)
+    is_vendor = forms.BooleanField(label=_("Are you a vendor?"), required=False)
 
 
     class Meta:

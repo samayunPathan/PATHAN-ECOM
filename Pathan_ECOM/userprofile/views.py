@@ -1,3 +1,4 @@
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import render,get_object_or_404,redirect
@@ -27,6 +28,14 @@ def verdor_detail(request,pk):
 @login_required 
 def myaccount(request):
     return render(request,'userprofile/myaccount.html')
+
+@login_required
+def my_order_detail(request):
+    
+    orders = Order.objects.filter(created_by=request.user)
+    context = {"orders": orders,}
+    return render(request, "userprofile/my_order_detail.html",context)
+    
 @login_required
 def my_store(request):
     try:

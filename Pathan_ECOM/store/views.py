@@ -1,9 +1,20 @@
+import json
+import stripe
+from django.conf import settings
 from django.db.models import Q
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Product,Category,Order,OrderItem
 from .cart import Cart
 from .forms import OrderForm
+
+# for payment
+import requests
+from sslcommerz_python.payment import SSLCSession
+from decimal import Decimal
+import socket
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -20,7 +31,7 @@ def cart_view(request):
         'cart':cart
     })
 
-@login_required
+@login_required 
 def checkout(request):
     cart=Cart(request)
     if request.method=="POST":
@@ -48,10 +59,11 @@ def checkout(request):
             return redirect('userprofile:myaccount')
     else:
         form=OrderForm()
-
     return render(request,'store/checkout.html',{
         'cart':cart,
         'form':form,
+
+        
 
     })
 
@@ -98,3 +110,8 @@ def category_detail(request,slug):
         'products':products
     })
   
+def payment(request):
+    order=get_object_or_404(Order)
+    return render(request,'store/payment.html',{
+        'order':order
+    })

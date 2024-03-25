@@ -20,6 +20,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 CART_SESSION_ID='cart'
 SESSION_COOKIE_AGE=86400
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'crispy_bootstrap4',
     'core_app',
     'userprofile',
     'store',
@@ -55,6 +57,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Pathan_ECOM.urls'
+
+STRIPE_PUB_KEY='pk_test_51Oy6QkFi64DnSJ0XYLJCKR9kIGDtpPW6bEJkU0Epiu42hBKsCF7cdnBZFpsHlD4n8KWXDqDZvUSQ3ytU06uKQlOY00dvCxhaP7'
+STRIPE_SECRET_KEY='sk_test_51Oy6QkFi64DnSJ0XmNAsLNFPHPQZw46nom2YDNrvoMOvc6Mlb1oML102iJ5FA23sTsWA3jYWowo2yMxOhXx50O3T00P34Raw0G'
 
 TEMPLATES = [
     {

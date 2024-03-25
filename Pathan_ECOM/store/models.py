@@ -95,7 +95,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=255)
     created_by = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    merchant_id=models.CharField(max_length=255,blank=True)
+    payment_intent=models.CharField(max_length=255,blank=True,null=True)
 
     is_paid = models.BooleanField(default=False,blank=True)
     paid_amount = models.IntegerField(blank=True, null=True)
@@ -110,6 +110,15 @@ class Order(models.Model):
             return self.paid_amount 
         
         return 0
+    
+    
+    def get_products(self):
+        
+        return list(self.items.values_list('product__title', flat=True))[0]
+    
+    def get_quantity(self):
+        products = self.items.values_list('product__title', 'quantity')
+        return list(products)[0][1]
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)

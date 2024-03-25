@@ -3,10 +3,11 @@ from .models import Product,Order,OrderItem
 
 class OrderForm(forms.ModelForm):
     class Meta:
+       
         model=Order
         fields=('first_name','last_name','email','address','zipcode','phone',)
         widgets={
-            'first_name':forms.TextInput(attrs={
+            'first_name':forms.TextInput( attrs={
                 'class':'w-full p-4 border border-gray-200'
             }),
             'last_name':forms.TextInput(attrs={
@@ -48,3 +49,12 @@ class ProductForm(forms.ModelForm):
                 'class':'w-full p-4 border border-gray-200'
             }),
         }
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            # Marking fields as required
+            self.fields['first_name'].required = True
+            self.fields['last_name'].required = True
+            self.fields['email'].required = True
+            self.fields['address'].required = True
+            self.fields['zipcode'].required = True
+            self.fields['phone'].required = True

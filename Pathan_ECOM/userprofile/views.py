@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 from django.contrib import messages
 
@@ -23,21 +24,29 @@ def verdor_detail(request,pk):
         'user':user,
         'products':products,
     })
-@login_required
+@login_required 
 def myaccount(request):
     return render(request,'userprofile/myaccount.html')
 @login_required
 def my_store(request):
-    products=request.user.products.exclude(status=Product.DELETED)
+    try:
+        userprofile = request.user.userprofile
+    except Userprofile.DoesNotExist:
+        # Handle the case where Userprofile does not exist for the user
+        # You can redirect the user to a profile setup page or display a message
+        return render(request,'userprofile/myaccount.html')
 
-    order_items=OrderItem.objects.filter(product__user=request.user)
-
-    return render(request,'userprofile/mystore.html',{
-        'products':products,
-        'order_items':order_items,
-    })
-
-@login_required
+    if userprofile.is_vendor:  # Check if the user is a vendor
+        products = Product.objects.filter(user=request.user)
+        order_items = OrderItem.objects.filter(product__user=request.user)
+        return render(request, 'userprofile/mystore.html', {
+            'products': products,
+            'order_items': order_items,
+        })
+    else:
+        messages.success(request,'You don\'t have Seller account yet !')
+        return redirect('userprofile:myaccount')
+@login_required 
 def my_store_order_detail(request,pk):
     order=get_object_or_404(Order,pk=pk)
 

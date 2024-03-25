@@ -19,6 +19,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 CART_SESSION_ID='cart'
 SESSION_COOKIE_AGE=86400
 
@@ -103,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

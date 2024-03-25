@@ -9,7 +9,7 @@ from django.contrib import messages
 
 from django.contrib.auth.models import User
 from .models import Userprofile
-
+from .forms import UserCreationForm
 
 from store.forms import ProductForm
 from store.models import Product,Order,OrderItem
@@ -32,8 +32,6 @@ def my_store(request):
     try:
         userprofile = request.user.userprofile
     except Userprofile.DoesNotExist:
-        # Handle the case where Userprofile does not exist for the user
-        # You can redirect the user to a profile setup page or display a message
         return render(request,'userprofile/myaccount.html')
 
     if userprofile.is_vendor:  # Check if the user is a vendor
@@ -113,9 +111,9 @@ def signup(request):
 
         if form.is_valid():
             user=form.save()
-           
+            is_vendor = form.cleaned_data['is_vendor']
             login(request,user)
-            userprofile=Userprofile.objects.create(user=user)
+            userprofile=Userprofile.objects.create(user=user,is_vendor=is_vendor)
 
             return redirect('core_app:font_page')
     else:

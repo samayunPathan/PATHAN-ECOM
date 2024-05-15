@@ -1,5 +1,4 @@
 import json
-import stripe
 from django.conf import settings
 from django.db.models import Q
 from django.urls import reverse
